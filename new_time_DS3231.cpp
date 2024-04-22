@@ -6,33 +6,26 @@ RTC_DS3231 rtc;
 void setup() {
     Serial.begin(9600);
 
-    // Перевіряємо чи є підключення до модулю RTC
+    
     if (!rtc.begin()) {
-        Serial.println("RTC не знайдено!");
+        Serial.println("RTC Г­ГҐ Г§Г­Г Г©Г¤ГҐГ­Г®!");
         while (1);
     }
 
-    // Якщо модуль RTC втратив живлення, встановлюємо час на задану дату і час
+    
     if (rtc.lostPower()) {
-        Serial.println("RTC втратив живлення, встановлюємо час...");
+        Serial.println("RTC lost power...");
 
-        // Встановлюємо час на вказану дату та час
-        //rtc.adjust(DateTime(2024, 4, 17, 20, 20, 0)); //рік, місяць, день, години, хвилини, секунди
+        
+        //rtc.adjust(DateTime(2024, 4, 17, 20, 20, 0)); 
     }
 }
 
 void loop() {
-    // Отримуємо поточну дату та час від модуля RTC
     DateTime now = rtc.now();
-
-    // Виводимо поточну дату та час на Serial Monitor
-    Serial.print("Поточний час: ");
+    Serial.print("ГЏГ®ГІГ®Г·Г­ГЁГ© Г·Г Г±: ");
     printDateTime(now);
-
-    delay(1000); // Затримка 1 секунда
 }
-
-// Функція для виводу дати та часу на Serial Monitor
 void printDateTime(DateTime dt) {
     Serial.print(dt.year(), DEC);
     Serial.print('/');
